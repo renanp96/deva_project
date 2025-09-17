@@ -11,6 +11,8 @@ import java.util.Optional;
 @Service
 public class CharacterService {
 
+    //TODO: Implementar o conceito de SOLID e arquitetura Hexagonal
+
     @Autowired
     private CharacterRepository characterRepository;
 

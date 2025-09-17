@@ -41,8 +41,8 @@ public class Character {
     private Integer arcane;
     private Integer luck;
 
-    //To-do: implementar a enitade de itens
-    //To-do: implementar os modificadores de level up
+    //TODO: implementar a enitade de itens
+    //TODO: implementar os modificadores de level up
 
     public Character(String name, CharacterClasses characterClass) {
         this.name = name;
