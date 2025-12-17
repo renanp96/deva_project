@@ -29,15 +29,15 @@ public class CharacterController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Retorna os dados de um personagem utilizando o ID como parametro")
-    public ResponseEntity<Character> getCharacterById(@RequestParam Long id) {
+    public ResponseEntity<Character> getCharacterById(@PathVariable Long id) {
         Optional<Character> character = characterService.findById(id);
         return character.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/{characterClass}")
+    @GetMapping("/class/{characterClass}")
     @Operation(summary = "Lista todos os personagens de um classe especifica")
-    public List<Character> getCharactersByClass(@RequestParam String characterClass) {
+    public List<Character> getCharactersByClass(@PathVariable String characterClass) {
         return characterService.findByClass(characterClass);
     }
 

@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 
 @Entity
-@Table(name = "characters")
+@Table(name = "deva_characters")
 @Getter
 @Setter
 @NoArgsConstructor
