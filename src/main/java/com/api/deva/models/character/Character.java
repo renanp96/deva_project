@@ -1,12 +1,14 @@
 package com.api.deva.models.character;
 
+import com.api.deva.models.attributes.Attributes;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
-import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = "deva_characters")
@@ -17,48 +19,27 @@ import org.springframework.beans.factory.annotation.Value;
 public class Character {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private  Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     private String name;
     private String nickname;
-
     private Integer level;
-    private Integer experience;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "character_class")
     private CharacterClasses characterClass;
 
-    private Integer vigor;
-    private Integer mind;
-    private Integer endurance;
-    private Integer strength;
-    private Integer dexterity;
-    private Integer intelligence;
-    private Integer faith;
-    private Integer arcane;
-    private Integer luck;
+    @Embedded
+    private Attributes attributes;
 
-    //TODO: implementar a enitade de itens
-    //TODO: implementar os modificadores de level up
-
-    public Character(String name, CharacterClasses characterClass) {
+    @JsonCreator
+    public Character(@JsonProperty("name") String name,
+                     @JsonProperty("characterClass") CharacterClasses characterClass) {
         this.name = name;
-        this.characterClass = characterClass;
         this.level = 5;
-        this.experience = 0;
-    }
-
-    private void defaultAttributes() {
-        this.vigor = 10;
-        this.mind = 10;
-        this.endurance = 10;
-        this.strength = 10;
-        this.dexterity = 10;
-        this.intelligence = 10;
-        this.faith = 10;
-        this.luck = 10;
+        this.characterClass = characterClass;
+        this.attributes = characterClass.createBaseAttributes();
     }
 }
