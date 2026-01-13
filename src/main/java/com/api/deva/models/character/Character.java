@@ -4,6 +4,7 @@ import com.api.deva.models.attributes.Attributes;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class Character {
     private Long id;
 
     @NotNull
+    @NotBlank
     private String name;
     private String nickname;
     private Integer level;
