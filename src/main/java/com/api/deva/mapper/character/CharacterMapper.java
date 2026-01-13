@@ -2,6 +2,7 @@ package com.api.deva.mapper.character;
 
 import com.api.deva.dto.character.CharacterCreateDTO;
 import com.api.deva.dto.character.CharacterResponseDTO;
+import com.api.deva.mapper.attributes.AttributesMapper;
 import com.api.deva.models.character.Character;
 import com.api.deva.models.character.CharacterClasses;
 
@@ -32,7 +33,7 @@ public class CharacterMapper {
                 character.getNickname(),
                 character.getLevel(),
                 character.getCharacterClass().name(),
-                character.getAttributes()
+                AttributesMapper.toDTO(character.getAttributes())
         );
     }
 }

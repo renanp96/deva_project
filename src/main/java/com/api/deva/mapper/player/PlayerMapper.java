@@ -2,6 +2,7 @@ package com.api.deva.mapper.player;
 
 import com.api.deva.dto.player.PlayerCreateDTO;
 import com.api.deva.dto.player.PlayerResponseDTO;
+import com.api.deva.mapper.attributes.AttributesMapper;
 import com.api.deva.models.character.CharacterClasses;
 import com.api.deva.models.player.Player;
 
@@ -32,7 +33,7 @@ public class PlayerMapper {
                 player.getRunes(),
                 player.getCharacterClass().name(),
                 player.getCreatedAt(),
-                player.getAttributes()
+                AttributesMapper.toDTO(player.getAttributes())
         );
     }
 
