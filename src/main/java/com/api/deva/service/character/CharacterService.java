@@ -13,8 +13,11 @@ import java.util.Optional;
 @Service
 public class CharacterService {
 
-    @Autowired
-    private CharacterRepository repository;
+    private final CharacterRepository repository;
+
+    public CharacterService(CharacterRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Character> findAll() {
         return repository.findAll();
