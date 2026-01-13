@@ -1,5 +1,8 @@
 package com.api.deva.controllers.player;
 
+import com.api.deva.dto.player.PlayerCreateDTO;
+import com.api.deva.dto.player.PlayerResponseDTO;
+import com.api.deva.mapper.player.PlayerMapper;
 import com.api.deva.models.player.Player;
 import com.api.deva.service.player.PlayerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,44 +19,44 @@ import java.util.Optional;
 @Tag(name = "Character", description = "End-point para cadastro de jogadores")
 public class PlayerController {
 
-    @Autowired
-    private PlayerService service;
+    private final PlayerService service;
+
+    public PlayerController(PlayerService service) {
+        this.service = service;
+    }
 
     @GetMapping
     @Operation(summary = "Retorna a lista de todos os jogadores")
-    public List<Player> getAllPlayers() {
-        return service.findAll();
+    public List<PlayerResponseDTO> getAllPlayers() {
+        return service.findAll()
+                .stream()
+                .map(PlayerMapper::toDTO)
+                .toList();
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Retorna um jogador especifico pelo seu Id")
-    public ResponseEntity<Player> getPlayerById(@PathVariable Long id) {
-        Optional<Player> player = service.findById(id);
-        return player.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public PlayerResponseDTO getPlayerById(@PathVariable Long id) {
+        return PlayerMapper.toDTO(service.findById(id));
     }
 
     @PostMapping("/register")
     @Operation(summary = "Registra um novo jogador")
-    public Player registerNewPlayer(@RequestBody Player player) {
-        return service.createNewPlayer(player);
+    public PlayerResponseDTO registerNewPlayer(@RequestBody PlayerCreateDTO dto) {
+       Player player = PlayerMapper.toEntity(dto);
+       return PlayerMapper.toDTO(service.createNewPlayer(player));
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Renomeia o nome do jogador")
-    public ResponseEntity<Player> renamePlayerUserName(@PathVariable Long id, @RequestBody Player username) {
-        try {
-            Player player = service.renamePlayerUsername(id, username);
-            return ResponseEntity.ok(player);
-        } catch (RuntimeException err) {
-            return ResponseEntity.notFound().build();
-        }
+    public PlayerResponseDTO renamePlayerUserName(@PathVariable Long id, @RequestBody PlayerCreateDTO dto) {
+        Player player = service.renamePlayerUsername(id, dto.username());
+        return PlayerMapper.toDTO(player);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Deleta o jogador da base de dados")
-    public ResponseEntity<Void> deletePlayer(@PathVariable Long id) {
+    public void deletePlayerById(@PathVariable Long id) {
         service.deletePlayerById(id);
-        return ResponseEntity.notFound().build();
     }
-
 }

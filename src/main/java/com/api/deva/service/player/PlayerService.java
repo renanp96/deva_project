@@ -12,16 +12,20 @@ import java.util.Optional;
 @Service
 public class PlayerService {
 
-    @Autowired
-    private PlayerRepository repository;
+    private final PlayerRepository repository;
+
+    public PlayerService(PlayerRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Player> findAll() {
         return repository.findAll();
     }
 
-    public Optional<Player> findById(Long id) {
-        return repository.findById(id);
-    }
+   public Player findById(Long id) {
+       return repository.findById(id)
+               .orElseThrow(() -> new RuntimeException("Jogador não encontrado"));
+   }
 
     public Player createNewPlayer(Player player) {
         validate(player.getUsername(), player.getCharacterClass());
@@ -33,9 +37,9 @@ public class PlayerService {
         return repository.save(player);
     }
 
-    public Player renamePlayerUsername(Long id, Player username) {
-        Player player = repository.findById(id).orElseThrow(() -> new RuntimeException("Jogador não encontrado"));
-        player.setUsername(username.getUsername());
+    public Player renamePlayerUsername(Long id, String username) {
+        Player player = findById(id);
+        player.setUsername(username);
         return repository.save(player);
     }
 

@@ -1,4 +1,4 @@
-package com.api.deva.mapper;
+package com.api.deva.mapper.character;
 
 import com.api.deva.dto.character.CharacterCreateDTO;
 import com.api.deva.dto.character.CharacterResponseDTO;

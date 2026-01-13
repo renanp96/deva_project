@@ -2,17 +2,15 @@ package com.api.deva.controllers.character;
 
 import com.api.deva.dto.character.CharacterCreateDTO;
 import com.api.deva.dto.character.CharacterResponseDTO;
-import com.api.deva.mapper.CharacterMapper;
+import com.api.deva.mapper.character.CharacterMapper;
 import com.api.deva.models.character.Character;
 import com.api.deva.service.character.CharacterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/npc")
