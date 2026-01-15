@@ -6,6 +6,5 @@ public record CharacterCreateDTO(
         String name,
         String nickname,
         Integer level,
-        String characterClass,
-        AttributesDTO attributes
+        String characterClass
 ) { }

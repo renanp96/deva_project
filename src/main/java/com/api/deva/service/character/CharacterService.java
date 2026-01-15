@@ -28,7 +28,7 @@ public class CharacterService {
     }
 
     public Character createNewCharacter(Character character) {
-        validate(character.getName(), character.getCharacterClass());
+        validate(character.getName(), character.getLevel(), character.getCharacterClass());
 
         if(repository.existsByName(character.getName())) {
             throw new RuntimeException("Nome do personagem já foi escolhido");
@@ -45,12 +45,19 @@ public class CharacterService {
     }
 
     public void deleteCharacterById(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Personagem não encontrado");
+        }
+
         repository.deleteById(id);
     }
 
-    private void validate(String name, CharacterClasses characterClass) {
+    private void validate(String name, Integer level, CharacterClasses characterClass) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Nome do personagem é obrigatório");
+        }
+        if(level < 5){
+            throw new IllegalArgumentException("O nivel do personagem deve ser maior ou igual a cinco");
         }
         if (characterClass == null) {
             throw new IllegalArgumentException("Classe do personagem é obrigatória");

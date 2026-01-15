@@ -19,7 +19,7 @@ public class CharacterMapper {
 
         character.setName(dto.name());
         character.setNickname(dto.nickname());
-        character.setLevel(5);
+        character.setLevel(dto.level());
         character.setCharacterClass(charClass);
         character.setAttributes(charClass.createBaseAttributes());
 

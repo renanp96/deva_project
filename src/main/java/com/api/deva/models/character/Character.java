@@ -37,10 +37,10 @@ public class Character {
     private Attributes attributes;
 
     @JsonCreator
-    public Character(@JsonProperty("name") String name,
+    public Character(@JsonProperty("name") String name, @JsonProperty("level") Integer level,
                      @JsonProperty("characterClass") CharacterClasses characterClass) {
         this.name = name;
-        this.level = 5;
+        this.level = level;
         this.characterClass = characterClass;
         this.attributes = characterClass.createBaseAttributes();
     }
