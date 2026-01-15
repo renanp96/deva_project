@@ -44,6 +44,10 @@ public class PlayerService {
     }
 
     public void deletePlayerById(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Personagem não encontrado");
+        }
+
         repository.deleteById(id);
     }
 
