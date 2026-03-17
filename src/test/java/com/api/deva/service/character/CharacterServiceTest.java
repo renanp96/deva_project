@@ -2,7 +2,7 @@ package com.api.deva.service.character;
 
 import com.api.deva.models.character.Character;
 import com.api.deva.models.character.CharacterClasses;
-import com.api.deva.repository.CharacterRepository;
+import com.api.deva.repository.character.CharacterRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

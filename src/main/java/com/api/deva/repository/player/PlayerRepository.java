@@ -1,4 +1,4 @@
-package com.api.deva.repository;
+package com.api.deva.repository.player;
 
 import com.api.deva.models.character.Character;
 import com.api.deva.models.player.Player;

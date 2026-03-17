@@ -3,8 +3,7 @@ package com.api.deva.service.character;
 
 import com.api.deva.models.character.Character;
 import com.api.deva.models.character.CharacterClasses;
-import com.api.deva.repository.CharacterRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.api.deva.repository.character.CharacterRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

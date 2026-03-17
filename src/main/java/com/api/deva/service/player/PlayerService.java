@@ -2,12 +2,10 @@ package com.api.deva.service.player;
 
 import com.api.deva.models.character.CharacterClasses;
 import com.api.deva.models.player.Player;
-import com.api.deva.repository.PlayerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.api.deva.repository.player.PlayerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlayerService {

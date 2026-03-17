@@ -1,4 +1,4 @@
-package com.api.deva.repository;
+package com.api.deva.repository.character;
 
 import com.api.deva.models.character.Character;
 import com.api.deva.models.character.CharacterClasses;

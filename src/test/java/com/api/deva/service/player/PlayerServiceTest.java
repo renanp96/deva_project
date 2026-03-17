@@ -2,13 +2,12 @@ package com.api.deva.service.player;
 
 import com.api.deva.models.character.CharacterClasses;
 import com.api.deva.models.player.Player;
-import com.api.deva.repository.PlayerRepository;
+import com.api.deva.repository.player.PlayerRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.core.parameters.P;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
